@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainfall Predictor | AI Powered</title>
+    <meta name="description" content="Predict annual rainfall using advanced machine learning models based on monthly data.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="bg-animation">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
+    <main class="container">
+        <header class="header">
+            <div class="brand">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 16.5C14.4853 16.5 16.5 14.4853 16.5 12C16.5 9.51472 14.4853 7.5 12 7.5C9.51472 7.5 7.5 9.51472 7.5 12C7.5 14.4853 9.51472 16.5 12 16.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 12V12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h1>RainFall AI</h1>
+            </div>
+            <p class="subtitle">Enter the monthly rainfall data (in mm) to predict the total annual rainfall.</p>
+        </header>
+
+        <section class="prediction-card">
+            <form id="predictionForm" class="prediction-form">
+                
+                <div class="form-group full-width year-group">
+                    <label for="YEAR">Prediction Year</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="YEAR" name="YEAR" required placeholder="e.g. 2026" min="1900" max="2100">
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+
+                <div class="months-grid">
+                    <div class="form-group">
+                        <label for="JAN">January</label>
+                        <div class="input-wrapper">
+                            <input type="number" step="0.01" id="JAN" name="JAN" required placeholder="0.00">
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="FEB">February</label>
+                        <div class="input-wrapper">
+                            <input type="number" step="0.01" id="FEB" name="FEB" required placeholder="0.00">
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="MAR">March</label>
+                        <div class="input-wrapper">
+                            <input type="number" step="0.01" id="MAR" name="MAR" required placeholder="0.00">
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="APR">April</label>
+                        <div class="input-wrapper">
+                            <input type="number" step="0.01" id="APR" name="APR" required placeholder="0.00">
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="MAY">May</label>
+                        <div class="input-wrapper">
+                            <input type="number" step="0.01" id="MAY" name="MAY" required placeholder="0.00">
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="JUN">June</label>
+                        <div class="input-wrapper">
+                            <input type="number" step="0.01" id="JUN" name="JUN" required placeholder="0.00">
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="JUL">July</label>
+                        <div class="input-wrapper">
+                            <input type="number" step="0.01" id="JUL" name="JUL" required placeholder="0.00">
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="AUG">August</label>
+                        <div class="input-wrapper">
+                            <input type="number" step="0.01" id="AUG" name="AUG" required placeholder="0.00">
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="SEP">September</label>
+                        <div class="input-wrapper">
+                            <input type="number" step="0.01" id="SEP" name="SEP" required placeholder="0.00">
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="OCT">October</label>
+                        <div class="input-wrapper">
+                            <input type="number" step="0.01" id="OCT" name="OCT" required placeholder="0.00">
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="NOV">November</label>
+                        <div class="input-wrapper">
+                            <input type="number" step="0.01" id="NOV" name="NOV" required placeholder="0.00">
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="DEC">December</label>
+                        <div class="input-wrapper">
+                            <input type="number" step="0.01" id="DEC" name="DEC" required placeholder="0.00">
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Predict Annual Rainfall</span>
+                        <div class="spinner" id="spinner"></div>
+                    </button>
+                    <button type="button" class="autofill-btn" id="autoFillBtn" title="Auto-fill with sample data">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 4V2M12 22V20M4 12H2M22 12H20M17.6569 6.34315L16.2426 7.75736M7.75736 16.2426L6.34315 17.6569M17.6569 17.6569L16.2426 16.2426M7.75736 7.75736L6.34315 6.34315" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Sample</span>
+                    </button>
+                    <button type="button" class="reset-btn" id="resetBtn" title="Clear inputs">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z" fill="currentColor"/>
+                        </svg>
+                        <span>Reset</span>
+                    </button>
+                </div>
+            </form>
+
+            <div class="result-container" id="resultContainer">
+                <div class="result-content">
+                    <h3 class="result-label">Predicted Annual Rainfall</h3>
+                    <div class="result-value">
+                        <span id="predictionResult">0.00</span>
+                        <span class="unit">mm</span>
+                    </div>
+                    <div id="categoryBadge" class="category-badge">Normal</div>
+                    <div class="chart-container">
+                        <canvas id="rainfallChart"></canvas>
+                    </div>
+                    <p class="result-note">Based on Random Forest Regression Analysis</p>
+                </div>
+            </div>
+            
+            <div class="error-container" id="errorContainer">
+                <p id="errorMessage"></p>
+            </div>
+            
+        </section>
+
+        <footer class="footer">
+            <p>RainFall AI Predictor &copy; 2026 | Built with <span class="heart">❤</span> and Machine Learning</p>
+        </footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

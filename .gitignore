@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Data & Models
+model_unzipped/*
+!model_unzipped/rainfall_model.pkl
+rainfall_archive.zip
+rainfall_model.zip
+
+# IDE
+.vscode/
+.idea/
