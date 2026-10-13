@@ -44,6 +44,32 @@ python app.py
 ```
 Open your browser at `http://127.0.0.1:5000`.
 
+## Deployment on Render
+
+This project includes a ready-to-use [`render.yaml`](render.yaml) blueprint specification for 1-click deployment.
+
+### Option A: Via Render Blueprint (Recommended)
+1. Go to [Render Dashboard](https://dashboard.render.com/).
+2. Click **New +** > **Blueprint**.
+3. Connect your GitHub repository: `https://github.com/Sarthak04-tech/rainfall-prediction`.
+4. Render will automatically read `render.yaml` and configure:
+   - **Environment**: Python
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `gunicorn app:app`
+   - **Health Check Path**: `/health`
+5. Click **Apply**.
+
+### Option B: Manual Web Service Setup
+1. Go to **New +** > **Web Service**.
+2. Select your repository `Sarthak04-tech/rainfall-prediction`.
+3. Configure the settings:
+   - **Name**: `rainfall-prediction`
+   - **Runtime**: `Python 3`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `gunicorn app:app`
+   - **Health Check Path**: `/health`
+4. Click **Deploy Web Service**.
+
 ## Model Evaluation
 - Model: Random Forest Regressor
 - Features: 17 meteorological features (`YEAR`, 12 months, and 4 quarterly aggregates)
